@@ -1,13 +1,13 @@
 # IA Embarqué 
 Projet IA Embarqué L3_SPI
 
-# Fonctions d'activation 
+# Choix fonctions d'activation ( TP1 )
 - Softmax
 - ReLU
 - Tanh
 - Sigmoid
 
-# Code pour SOFTMAX
+
 
 
 
