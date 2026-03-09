@@ -11,7 +11,7 @@ Projet IA Embarqué L3_SPI
 
 
 
-# [cite_start]ETRS606 - TP1 : Multi-Layer Perceptron (MLP) sur MNIST pour IA Embarquée [cite: 1, 3]
+# ETRS606 - TP1 : Multi-Layer Perceptron (MLP) sur MNIST pour IA Embarquée [cite: 1, 3]
 
 [cite_start]Ce dépôt contient les travaux réalisés dans le cadre du TP1 du module "IA Embarquée" (ETRS606) de l'Université Savoie Mont Blanc[cite: 1, 2]. 
 [cite_start]L'objectif est d'implémenter et d'optimiser un réseau de neurones denses (MLP) pour résoudre le problème de classification d'images MNIST[cite: 3, 15], avec pour contrainte finale un déploiement sur une cible matérielle limitée (microcontrôleur STM32).
@@ -21,7 +21,7 @@ Projet IA Embarqué L3_SPI
 * [cite_start]**Entrée :** Chaque image fait $28\times28$ pixels[cite: 6]. [cite_start]Pour notre MLP, elle est aplatie en un vecteur 1D de 784 pixels[cite: 6, 14]. [cite_start]L'information de position spatiale n'est donc pas conservée[cite: 14].
 * [cite_start]**Sortie :** 10 classes possibles (chiffres 0 à 9)[cite: 7]. [cite_start]Le modèle produit une distribution de probabilité sur ces 10 classes[cite: 18, 20].
 
-## [cite_start]2. Partie 1 : Étude des Architectures et Fonctions d'Activation [cite: 25]
+## 2. Partie 1 : Étude des Architectures et Fonctions d'Activation [cite: 25]
 [cite_start]Nous avons testé quatre architectures avec l'optimiseur Adam et la fonction de coût `categorical_crossentropy` sur 10 epochs[cite: 29]. [cite_start]L'ensemble $W$ représente les poids/synapses du modèle[cite: 13].
 
 | Modèle | Couches Cachées | Fonction d'Activation | Précision (Val Acc) | Paramètres (Taille W) |
