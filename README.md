@@ -14,7 +14,7 @@ Projet IA Embarqué L3_SPI
 # ETRS606 - TP1 : Multi-Layer Perceptron (MLP) sur MNIST pour IA Embarquée [cite: 1, 3]
 
 
-L'objectif est d'implémenter et d'optimiser un réseau de neurones denses (MLP) pour résoudre le problème de classification d'images MNIST[cite: 3, 15], avec pour contrainte finale un déploiement sur une cible matérielle limitée (microcontrôleur STM32).
+L'objectif est d'implémenter et d'optimiser un réseau de neurones denses (MLP) pour résoudre le problème de classification d'images MNIST, avec pour contrainte finale un déploiement sur une cible matérielle limitée (microcontrôleur STM32).
 
 ## 1. Description du Problème et des Données
 Le dataset MNIST contient des images en niveaux de gris de chiffres manuscrits (de 0 à 9)[cite: 5].
