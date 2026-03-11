@@ -2,7 +2,7 @@
 Projet IA Embarqué L3_SPI des "Ny" 
 
 
-# ETRS606 - TP1 : Multi-Layer Perceptron (MLP) sur MNIST pour IA Embarquée [cite: 1, 3]
+# ETRS606 - TP1 : Multi-Layer Perceptron (MLP) sur MNIST pour IA Embarquée
 
 
 L'objectif est d'implémenter et d'optimiser un réseau de neurones denses (MLP) pour résoudre le problème de classification d'images MNIST, avec pour contrainte finale un déploiement sur une cible matérielle limitée (microcontrôleur STM32).
