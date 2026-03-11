@@ -1,5 +1,5 @@
 # IA Embarqué 
-Projet IA Embarqué L3_SPI
+Projet IA Embarqué L3_SPI des "Ny" 
 
 # Choix fonctions d'activation ( TP1 )
 - Softmax
@@ -17,12 +17,12 @@ Projet IA Embarqué L3_SPI
 L'objectif est d'implémenter et d'optimiser un réseau de neurones denses (MLP) pour résoudre le problème de classification d'images MNIST, avec pour contrainte finale un déploiement sur une cible matérielle limitée (microcontrôleur STM32).
 
 ## 1. Description du Problème et des Données
-Le dataset MNIST contient des images en niveaux de gris de chiffres manuscrits (de 0 à 9)[cite: 5].
-**Entrée :** Chaque image fait $28\times28$ pixels[cite: 6]. [cite_start]Pour notre MLP, elle est aplatie en un vecteur 1D de 784 pixels[cite: 6, 14]. L'information de position spatiale n'est donc pas conservée[cite: 14].
-* **Sortie :** 10 classes possibles (chiffres 0 à 9)[cite: 7]. Le modèle produit une distribution de probabilité sur ces 10 classes[cite: 18, 20].
+Le dataset MNIST contient des images en niveaux de gris de chiffres manuscrits (de 0 à 9).
+**Entrée :** Chaque image fait $28\times28$ pixels.Pour notre MLP, elle est aplatie en un vecteur 1D de 784 pixels. L'information de position spatiale n'est donc pas conservée.
+* **Sortie :** 10 classes possibles (chiffres 0 à 9). Le modèle produit une distribution de probabilité sur ces 10 classes.
 
-## 2. Partie 1 : Étude des Architectures et Fonctions d'Activation [cite: 25]
-Nous avons testé quatre architectures avec l'optimiseur Adam et la fonction de coût `categorical_crossentropy` sur 10 epochs[cite: 29]. L'ensemble $W$ représente les poids/synapses du modèle[cite: 13].
+## 2. Partie 1 : Étude des Architectures et Fonctions d'Activation 
+Nous avons testé quatre architectures avec l'optimiseur Adam et la fonction de coût `categorical_crossentropy` sur 10 epochs. L'ensemble $W$ représente les poids/synapses du modèle.
 
 | Modèle | Couches Cachées | Fonction d'Activation | Précision (Val Acc) | Paramètres (Taille W) |
 | :--- | :--- | :--- | :--- | :--- |
@@ -31,26 +31,26 @@ Nous avons testé quatre architectures avec l'optimiseur Adam et la fonction de 
 | **C** | 1 (128) | Tanh | ~ 97.83 % | 101 770 |
 | **D** | 1 (128) | Sigmoid | *Plus lent à converger* | 101 770 |
 
-**Analyse des compromis (Accuracy vs. Mémoire)[cite: 37]:**
-Bien que les modèles avec couches cachées (B et C) atteignent d'excellentes précisions (> 97%), ils requièrent plus de 100 000 paramètres[cite: 37]. 
+**Analyse des compromis (Accuracy vs. Mémoire):**
+Bien que les modèles avec couches cachées (B et C) atteignent d'excellentes précisions (> 97%), ils requièrent plus de 100 000 paramètres. 
 Pour un déploiement sur un **STM32**, la mémoire Flash et la RAM sont très limitées. Le calcul d'exponentielles complexes requises par `tanh` ou `sigmoid` est également coûteux en énergie et en cycles d'horloge. 
 
 **Choix de l'architecture pour l'embarqué :** Nous avons opté pour un compromis : un modèle **ReLU** avec une seule petite couche cachée de **32 neurones**. ReLU permet un calcul très rapide (simple condition logique) idéal pour un microcontrôleur, tout en réduisant drastiquement le nombre de paramètres par rapport à un modèle à 128 neurones.
 
-## [3. Partie 2 : Choix de l'Algorithme d'Optimisation [cite: 38]
-[cite_start]En utilisant notre architecture légère (Dense 32 ReLU + Sortie Softmax), nous avons comparé différents optimiseurs sur 10 epochs[cite: 39].
+## [3. Partie 2 : Choix de l'Algorithme d'Optimisation 
+En utilisant notre architecture légère (ReLU + Sortie Softmax), nous avons comparé différents optimiseurs sur 10 epochs.
 
-* **Adam :** 96.76 % (Convergence rapide, combine momentum et RMSprop [cite: 40])
-* **RMSprop :** 96.68 % (Très stable, adapte le taux d'apprentissage [cite: 40])
-* **SGD :** 94.34 % (Classique, intuition de base, mais plus lent à converger [cite: 40])
-* **Adagrad :** 89.66 % (Baisse son taux d'apprentissage trop agressivement ici [cite: 40])
+* **Adam :** 96.76 % (Convergence rapide, combine momentum et RMSprop)
+* **RMSprop :** 96.68 % (Très stable, adapte le taux d'apprentissage)
+* **SGD :** 94.34 % (Classique, intuition de base, mais plus lent à converger)
+* **Adagrad :** 89.66 % (Baisse son taux d'apprentissage trop agressivement ici)
 
 **Conclusion :** `Adam` et `RMSprop` offrent les meilleures performances de convergence rapide pour cette architecture.
 
-## 4. Partie 3 : Choix de la Fonction Coût [cite: 41]
-Le choix de la fonction de coût dépend de la sortie du modèle et du format des labels[cite: 42].
-* **`categorical_crossentropy` :** Utilisée initialement, requiert d'encoder les labels en "one-hot" (ex: `[0, 0, 1, ...]` pour le chiffre 2)[cite: 44].
-* **`sparse_categorical_crossentropy` :** Permet d'utiliser directement les entiers (ex: `2`)[cite: 44].
+## 4. Partie 3 : Choix de la Fonction Coût
+Le choix de la fonction de coût dépend de la sortie du modèle et du format des labels.
+* **`categorical_crossentropy` :** Utilisée initialement, requiert d'encoder les labels en "one-hot" (ex: `[0, 0, 1, ...]` pour le chiffre 2).
+* **`sparse_categorical_crossentropy` :** Permet d'utiliser directement les entiers (ex: `2`).
 
-**Conclusion :** L'entraînement avec `sparse_categorical_crossentropy` donne des résultats identiques (~96.84% d'accuracy) mais évite la création de grands vecteurs d'encodage "one-hot" en mémoire[cite: 44]. C'est une optimisation très pertinente pour réduire l'empreinte RAM lors de la préparation des données sur un système contraint.
+**Conclusion :** L'entraînement avec `sparse_categorical_crossentropy` donne des résultats identiques (~96.84% d'accuracy) mais évite la création de grands vecteurs d'encodage "one-hot" en mémoire. C'est une optimisation très pertinente pour réduire l'empreinte RAM lors de la préparation des données sur un système contraint.
 
