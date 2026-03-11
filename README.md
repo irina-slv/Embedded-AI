@@ -28,7 +28,7 @@ Pour un déploiement sur un **STM32**, la mémoire Flash et la RAM sont très li
 
 **Choix de l'architecture pour l'embarqué :** Nous avons opté pour un compromis : un modèle **ReLU** avec une seule petite couche cachée de **32 neurones**. ReLU permet un calcul très rapide (simple condition logique) idéal pour un microcontrôleur, tout en réduisant drastiquement le nombre de paramètres par rapport à un modèle à 128 neurones.
 
-## [3. Partie 2 : Choix de l'Algorithme d'Optimisation 
+## 3. Partie 2 : Choix de l'Algorithme d'Optimisation 
 En utilisant notre architecture légère (ReLU + Sortie Softmax), nous avons comparé différents optimiseurs sur 10 epochs.
 
 * **Adam :** 96.76 % (Convergence rapide, combine momentum et RMSprop)
