@@ -1,4 +1,4 @@
-# IA Embarqué 
+# NYA Embarqué 
 Projet IA Embarqué L3_SPI des "Ny" 
 
 
