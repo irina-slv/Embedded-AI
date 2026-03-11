@@ -1,15 +1,6 @@
 # IA Embarqué 
 Projet IA Embarqué L3_SPI des "Ny" 
 
-# Choix fonctions d'activation ( TP1 )
-- Softmax
-- ReLU
-- Tanh
-- Sigmoid
-
-
-
-
 
 # ETRS606 - TP1 : Multi-Layer Perceptron (MLP) sur MNIST pour IA Embarquée [cite: 1, 3]
 
