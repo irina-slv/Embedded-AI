@@ -7,6 +7,8 @@
 
 ---
 
+> Lien site web : https://weather-ai-service-b765.onrender.com/
+
 ## 📋 Vue d'ensemble
 
 Ce dépôt couvre l'ensemble du module ETRS606 : de l'entraînement d'un réseau de neurones en Python jusqu'au déploiement Edge AI sur microcontrôleur STM32, en passant par la connectivité IoT cloud via ThingSpeak.
