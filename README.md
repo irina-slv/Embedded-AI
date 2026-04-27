@@ -1,3 +1,4 @@
+
 # 🤖 ETRS606 - IA Embarquée | Projet NYA
 
 > **Projet IA Embarquée L3_SPI — Équipe "Ny"**  
@@ -357,3 +358,4 @@ Université Savoie Mont Blanc — ETRS606 IA Embarquée
 
 Code source sous licence MIT.  
 Drivers STMicroelectronics sous leurs licences respectives (voir headers des fichiers).
+
